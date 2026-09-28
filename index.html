@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leyendas del Asfalto</title>
+    <!-- Fuente moderna desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES Y ESTILOS GLOBALES --- */
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: rgba(25, 27, 38, 0.7);
+            --text-color: #e0e6ed;
+            --accent-skyline: #00f0ff; /* Azul Ciber/Neón */
+            --accent-charger: #ff0055; /* Rojo Pasión / Mopar */
+            --accent-porsche: #ffb703; /* Dorado / Amarillo GT3 */
+            --border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            /* Fondo dinámico con degradado */
+            background: radial-gradient(circle at top, #1f2833 0%, #0b0c10 80%);
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            color: #8892b0;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* --- CONTENEDOR GRID RESPONSIVO --- */
+        .garage-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* --- TARJETAS (CARDS) --- */
+        .car-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Imagen y Efectos */
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .card-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            color: #fff;
+        }
+
+        /* Contenido de la Tarjeta */
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #a8b2d1;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Ficha Técnica */
+        .specs {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-item span {
+            display: block;
+            font-size: 0.75rem;
+            color: #8892b0;
+            text-transform: uppercase;
+        }
+
+        .spec-item strong {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Botón de Acción */
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 0;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        /* --- ESTILOS PERSONALIZADOS POR AUTO --- */
+        
+        /* 1. Nissan Skyline (Estilo Neón / Tuner) */
+        .skyline .card-title { color: var(--accent-skyline); }
+        .skyline .badge { border: 1px solid var(--accent-skyline); }
+        .skyline .btn {
+            background: transparent;
+            color: var(--accent-skyline);
+            border: 2px solid var(--accent-skyline);
+        }
+        .skyline:hover {
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+        .skyline .btn:hover {
+            background: var(--accent-skyline);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-skyline);
+        }
+
+        /* 2. Dodge Charger (Estilo American Muscle) */
+        .charger .card-title { color: var(--accent-charger); }
+        .charger .badge { border: 1px solid var(--accent-charger); }
+        .charger .btn {
+            background: transparent;
+            color: var(--accent-charger);
+            border: 2px solid var(--accent-charger);
+        }
+        .charger:hover {
+            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.2);
+            border-color: rgba(255, 0, 85, 0.3);
+        }
+        .charger .btn:hover {
+            background: var(--accent-charger);
+            color: #fff;
+            box-shadow: 0 0 15px var(--accent-charger);
+        }
+
+        /* 3. Porsche 911 GT3 RS (Estilo Racing / Track Day) */
+        .porsche .card-title { color: var(--accent-porsche); }
+        .porsche .badge { border: 1px solid var(--accent-porsche); }
+        .porsche .btn {
+            background: transparent;
+            color: var(--accent-porsche);
+            border: 2px solid var(--accent-porsche);
+        }
+        .porsche:hover {
+            box-shadow: 0 10px 30px rgba(255, 183, 3, 0.2);
+            border-color: rgba(255, 183, 3, 0.3);
+        }
+        .porsche .btn:hover {
+            background: var(--accent-porsche);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-porsche);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            color: #555;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Garaje de Leyendas</h1>
+        <p>Potencia, historia y diseño en su máxima expresión</p>
+    </header>
+
+    <main class="garage-container">
+
+        <!-- AUTO 1: NISSAN SKYLINE -->
+        <article class="car-card skyline">
+            <div class="card-img-wrapper">
+                <span class="badge">JDM Icon</span>
+                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80" alt="Nissan Skyline GT-R">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Nissan Skyline GT-R</h2>
+                <p class="card-description">Conocido como "Godzilla", el Skyline R34 es el rey indiscutible de la ingeniería japonesa y la cultura del tunning moderno.</p>
+                
+                <div class="specs">
+                    <div class="spec-item">
+                        <span>Motor</span>
+                        <strong>2.6L TT</strong>
+                    </div>
+                    <div class="spec-item">
+                        <span>Potencia</span>
+                        <strong>276 HP</strong>
+                    </div>
+                    <div class="spec-item">
+                        <span>Tracción</span>
+                        <strong>AWD</strong>
+                    </div>
+                </div>
+
+                <a href="#" class="btn">Explorar R34</a>
+            </div>
+        </article>
+
+        <!-- AUTO 2: DODGE CHARGER 1970 -->
+        <article class="car-card charger">
+            <div class="card-img-wrapper">
+                <span class="badge">Muscle Car</span>
+                <img src="https://images.unsplash.com/photo-1612544408805-e52722334a04?auto=format&fit=crop&w=800&q=80" alt="Dodge Charger 1970">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Dodge Charger 1970</h2>
+                <p class="card-description">El icono del músculo americano. Un clásico impredecible con motor V8 rugiente y una presencia imponente en la carretera.</p>
+                
+                <div class="specs">
+                    <div class="spec-item">
+                        <span>Motor</span>
+                        <strong>7.2L V8</strong>
+                    </div>
+                    <div class="spec-item">
+                        <span>Potencia</span>
+                        <strong>375 HP</strong>
+                    </div>
+                    <div class="spec-item">
+                        <span>Tracción</span>
+                        <strong>RWD</strong>
+                    </div>
+                </div>
+
+                <a href="#" class="btn">Explorar V8</a>
+            </div>
+        </article>
+
+        <!-- AUTO 3: PORSCHE 911 GT3 RS -->
+        <article class="car-card porsche">
+            <div class="card-img-wrapper">
+                <span class="badge">Track Weapon</span>
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80" alt="Porsche 911 GT3 RS">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Porsche 911 GT3 RS</h2>
+                <p class="card-description">La cúspide de la ingeniería alemana. Diseñado con una aerodinámica extrema para dominar las pistas y devorar curvas.</p>
+                
+                <div class="specs">
+                    <div class="spec-item">
+                        <span>Motor</span>
+                        <strong>4.0L F6</strong>
+                    </div>
+                    <div class="spec-item">
+                        <span>Potencia</span>
+                        <strong>518 HP</strong>
+                    </div>
+                    <div class="spec-item">
+                        <span>0-100 km/h</span>
+                        <strong>3.2s</strong>
+                    </div>
+                </div>
+
+                <a href="#" class="btn">Explorar GT3</a>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Designed for Petrolheads. HTML5 & CSS3 Masterpiece.</p>
+    </footer>
+
+</body>
+</html>
